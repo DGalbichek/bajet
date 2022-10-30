@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Expenses Home</title>
+    </head>
+    <body>
+        <h1>Expenses Home</h1>
+        <form method="POST" action=".">
+            {{ form.as_p }}
+            {% csrf_token %}
+            {% if form.errors %}
+            <div class="form-group has-error">
+                <span class="help-block">{{ form.text.errors }}</span>
+            </div>
+            {% endif %}
+            <button id="id_new_expense_add">Add</button>
+        </form>
+        <h2>Recent Expenses</h2>
+        <table id="id_recent_expenses_table">
+            <tbody>
+            {% for expense in recent_expenses %}
+                <tr>
+                    <td>{{ expense.name }}</td>
+                    <td>{{ expense.amount }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </body>
+</html>
