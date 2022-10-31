@@ -21,6 +21,7 @@
             <tbody>
             {% for expense in recent_expenses %}
                 <tr>
+                    <td>{{ expense.date }}</td>
                     <td>{{ expense.name }}</td>
                     <td>{{ expense.amount }}</td>
                 </tr>

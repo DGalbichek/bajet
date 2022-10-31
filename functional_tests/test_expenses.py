@@ -21,6 +21,11 @@ class NewExpenseTest(LiveServerTestCase):
         header_text = self.browser.find_element('tag name', 'h1').text
         self.assertIn('Expenses Home', header_text)
 
+        # set date
+        date_inputbox = self.browser.find_element('id', 'id_date')
+        self.assertEqual(date_inputbox.get_attribute('placeholder'), 'yyyy-mm-dd')
+        date_inputbox.send_keys('2022-10-31')
+
         # type name of expense "Grocery shopping"
         name_inputbox = self.browser.find_element('id', 'id_name')
         self.assertEqual(name_inputbox.get_attribute('placeholder'), 'Enter new expense')
@@ -41,7 +46,6 @@ class NewExpenseTest(LiveServerTestCase):
         )
 
         # quick form reset to blank
-        name_inputbox = self.browser.find_element('id', 'id_name')
-        self.assertEqual(name_inputbox.get_attribute('value'), '')
-        amount_inputbox = self.browser.find_element('id', 'id_amount')
-        self.assertEqual(amount_inputbox.get_attribute('value'), '')
+        self.assertEqual(self.browser.find_element('id', 'id_date').get_attribute('value'), '')
+        self.assertEqual(self.browser.find_element('id', 'id_name').get_attribute('value'), '')
+        self.assertEqual(self.browser.find_element('id', 'id_amount').get_attribute('value'), '')
