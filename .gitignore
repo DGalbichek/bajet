@@ -133,3 +133,6 @@ dmypy.json
 
 # Selenium
 chromedriver.exe
+
+# macOS
+.DS_Store

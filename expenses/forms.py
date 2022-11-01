@@ -18,6 +18,9 @@ class NewQuickExpenseForm(forms.models.ModelForm):
                 'placeholder': 'Enter new expense',
                 'class': 'form-control input-lg'
             }),
+            'amount': forms.fields.TextInput(attrs={
+                'class': 'form-control input-lg'
+            }),
         }
         error_messages = {
             'date': {'required': EMPTY_EXPENSE_DATE_ERROR},

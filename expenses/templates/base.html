@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+        <title>{% block title %}{% endblock %}</title>
+        {% load static %}
+        <link href="{% static '/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-default offset-3 col-6 bg-dark" role="navigation">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="/">Bajet</a>
+                </div>
+            </nav>
+        </div>
+        <div class="container">
+            <div class="offset-3 col-6 bg-light">
+                <div class="row mx-2">
+                    {% block main_content %}{% endblock %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
