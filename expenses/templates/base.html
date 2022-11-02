@@ -10,15 +10,27 @@
     </head>
     <body>
         <div class="container">
-            <nav class="navbar navbar-default offset-3 col-6 bg-dark" role="navigation">
+            <nav class="navbar navbar-default offset-3 col-6 p-2 bg-dark" role="navigation">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="/">Bajet</a>
+                    <a class="navbar-brand text-light" href="/">Bajet</a>
                 </div>
             </nav>
+            {% if messages %}
+                <div class="row">
+                    <div class="offset-3 col-6">
+                        {% for message in messages %}
+                            <div class="alert alert-{{ message.level_tag }}">{{ message }}</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
         </div>
         <div class="container">
             <div class="offset-3 col-6 bg-light">
-                <div class="row mx-2">
+                <div class="row pt-0 ps-4">
+                    {% block breadcrumbs %}{% endblock %}
+                </div>
+                <div class="p-4">
                     {% block main_content %}{% endblock %}
                 </div>
             </div>
