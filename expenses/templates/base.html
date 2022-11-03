@@ -12,7 +12,7 @@
         <div class="container">
             <nav class="navbar navbar-default offset-3 col-6 p-2 bg-dark" role="navigation">
                 <div class="container-fluid">
-                    <a class="navbar-brand text-light" href="/">Bajet</a>
+                    <a class="navbar-brand text-light" href="/"><h2>Bajet</h2></a>
                 </div>
             </nav>
             {% if messages %}
@@ -27,9 +27,11 @@
         </div>
         <div class="container">
             <div class="offset-3 col-6 bg-light">
-                <div class="row pt-0 ps-4">
-                    {% block breadcrumbs %}{% endblock %}
-                </div>
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb ps-4">
+                        {% block breadcrumbs %}{% endblock %}
+                    </ol>
+                </nav>
                 <div class="p-4">
                     {% block main_content %}{% endblock %}
                 </div>
