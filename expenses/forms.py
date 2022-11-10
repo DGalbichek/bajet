@@ -12,7 +12,7 @@ class NewQuickExpenseForm(forms.models.ModelForm):
         widgets = {
             'date': forms.fields.TextInput(attrs={
                 'placeholder': 'yyyy-mm-dd',
-                'class': 'form-control input-lg'
+                'class': 'form-control input-lg datepicker'
             }),
             'name': forms.fields.TextInput(attrs={
                 'placeholder': 'Enter new expense',

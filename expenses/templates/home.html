@@ -2,6 +2,21 @@
 
 {% block title %}Expenses Home{% endblock %}
 
+{% block scripts %}
+    {% load static %}
+    <link href="{% static '/bootstrap-datepicker.css' %}" rel="stylesheet">
+    <script src="{% static '/bootstrap-datepicker.js' %}"></script>
+    <script>
+        $(document).ready(
+			function() {
+				$(".datepicker").datepicker({
+					dateFormat: "yy-mm-dd",
+					autoclose: true
+				});
+			});
+    </script>
+{% endblock %}
+
 {% block breadcrumbs %}
     <li class="breadcrumb-item active" aria-current="page">Expenses Home</li>
 {% endblock %}
@@ -17,7 +32,7 @@
             <span class="help-block">{{ form.text.errors }}</span>
         </div>
         {% endif %}
-        <button id="id_new_expense_add" class="form-control">Add</button>
+        <button type="submit" id="id_new_expense_add" class="form-control btn btn-primary">Add</button>
     </form>
 </div>
 <div class="row pt-4">

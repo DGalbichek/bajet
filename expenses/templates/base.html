@@ -7,6 +7,10 @@
         <title>{% block title %}{% endblock %}</title>
         {% load static %}
         <link href="{% static '/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+        <link href="{% static '/jquery/jquery-ui.css' %}" rel="stylesheet">
+        <script src="{% static '/jquery/jquery-3.6.1.min.js' %}"></script>
+        <script src="{% static '/jquery/jquery-ui.js' %}"></script>
+        {% block scripts %}{% endblock %}
     </head>
     <body>
         <div class="container">
