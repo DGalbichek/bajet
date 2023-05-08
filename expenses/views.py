@@ -1,10 +1,15 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
-from .forms import NewQuickExpenseForm
-from .models import Expense
+
+from expenses.forms import NewQuickExpenseForm
+from expenses.models import Expense
 
 
+@login_required
 def home_page(request):
-    new_quick_expense_form = NewQuickExpenseForm(data=request.POST if request.POST else None)
+    new_quick_expense_form = NewQuickExpenseForm(data=request.POST if request.POST else None,
+                                                 initial={'paid_by': request.user})
+
     if request.POST and new_quick_expense_form.is_valid():
         new_quick_expense_form.save()
         new_quick_expense_form = NewQuickExpenseForm()

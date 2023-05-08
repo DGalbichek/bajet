@@ -8,7 +8,7 @@ EMPTY_EXPENSE_NAME_ERROR = "You can't add an expense without a name"
 class NewQuickExpenseForm(forms.models.ModelForm):
     class Meta:
         model = Expense
-        fields = ('date', 'name', 'amount')
+        fields = ('date', 'name', 'amount', 'category', 'paid_by')
         widgets = {
             'date': forms.fields.TextInput(attrs={
                 'placeholder': 'yyyy-mm-dd',
@@ -21,6 +21,10 @@ class NewQuickExpenseForm(forms.models.ModelForm):
             'amount': forms.fields.TextInput(attrs={
                 'class': 'form-control input-lg'
             }),
+            'category': forms.fields.Select(attrs={
+                'class': 'form-control input-lg'
+            }),
+            'paid_by': forms.HiddenInput(),
         }
         error_messages = {
             'date': {'required': EMPTY_EXPENSE_DATE_ERROR},

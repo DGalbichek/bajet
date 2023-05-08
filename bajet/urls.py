@@ -18,6 +18,6 @@ from django.urls import path
 from expenses import views as exv
 
 urlpatterns = [
-    path('', exv.home_page, name='expenses_home')
-    #path('admin/', admin.site.urls),
+    path('', exv.home_page, name='expenses_home'),
+    path('admin/', admin.site.urls),
 ]
