@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block main_content %}
-    <h2>{{expense}}</h2>
+    <h2>{{ expense }}</h2>
+    <h3>{{ expense.amount }} {% if expense.is_reconciled %}OK{% endif %}</h3>
     {% if expense.items.all %}
     <table class="table">
         <thead>
@@ -21,6 +22,12 @@
                 <td>{{ expense_item.total }}</td>
             </tr>
             {% endfor %}
+            <tr class="table-secondary">
+                <th scope="row">TOTAL</th>
+                <td></td>
+                <td></td>
+                <td>{{ expense.items_total_price }}</td>
+            </tr>
         </tbody>
     </table>
     {% endif %}

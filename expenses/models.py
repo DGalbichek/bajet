@@ -26,7 +26,6 @@ class Expense(models.Model):
     #split
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     #receipt
-    #reconciled
     last_edited = models.DateTimeField(auto_now=True)
     #trail json, in admin?
 
@@ -35,6 +34,14 @@ class Expense(models.Model):
 
     def get_absolute_url(self):
         return reverse('expense_detail', args=[str(self.pk)])
+
+    @property
+    def items_total_price(self):
+        return sum([x.total for x in self.items.all()])
+
+    @property
+    def is_reconciled(self):
+        return self.amount == self.items_total_price
 
 
 class Unit(models.Model):

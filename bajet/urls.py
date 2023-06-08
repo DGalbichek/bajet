@@ -18,6 +18,8 @@ from django.urls import path
 from expenses import views as exv
 
 urlpatterns = [
-    path('', exv.home_page, name='expenses_home'),
     path('admin/', admin.site.urls),
+    path('', exv.home_page, name='expenses_home'),
+    path('expenses/', exv.ExpenseListView.as_view(), name='expenses_list'),
+    path('expenses/<int:pk>/', exv.ExpenseDetailView.as_view(), name='expense_detail'),
 ]
