@@ -8,11 +8,18 @@ class CategoryAdmin(admin.ModelAdmin):
     list_display = ('name', )
 
 
+class ExpenseItemInlineAdmin(admin.TabularInline):
+    model = ExpenseItem
+    extra = 0
+
+
 @admin.register(Expense)
 class ExpenseAdmin(admin.ModelAdmin):
     list_display = ('name', 'amount', 'date', 'paid_by', 'category')
     list_filter = ('category__name', 'paid_by__username', 'added_by__username')
     search_field = ('name', )
+
+    inlines = (ExpenseItemInlineAdmin, )
 
 
 @admin.register(Unit)
