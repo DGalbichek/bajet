@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 
 
 class Category(models.Model):
@@ -25,11 +26,15 @@ class Expense(models.Model):
     #split
     category = models.ForeignKey(Category, on_delete=models.PROTECT)
     #receipt
+    #reconciled
     last_edited = models.DateTimeField(auto_now=True)
     #trail json, in admin?
 
     def __str__(self):
         return f"{self.name} {self.date}"
+
+    def get_absolute_url(self):
+        return reverse('expense_detail', args=[str(self.pk)])
 
 
 class Unit(models.Model):
@@ -55,8 +60,12 @@ class ExpenseItem(models.Model):
     item = models.ForeignKey(Item, on_delete=models.PROTECT)
     price = models.FloatField()
     quantity = models.IntegerField()
-    expense = models.ForeignKey(Expense, on_delete=models.CASCADE)
+    expense = models.ForeignKey(Expense, on_delete=models.CASCADE, related_name='items')
     #trail
 
     def __str__(self):
         return f"{self.item} in {self.expense}"
+
+    @property
+    def total(self):
+        return self.price * self.quantity

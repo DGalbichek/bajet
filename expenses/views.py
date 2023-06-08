@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
+from django.views.generic import ListView, DetailView
 
 from expenses.forms import NewQuickExpenseForm
 from expenses.models import Expense
@@ -16,3 +17,12 @@ def home_page(request):
 
     recent_expenses = Expense.objects.order_by('-last_edited')[:10]
     return render(request, 'home.html', context={'form': new_quick_expense_form, 'recent_expenses': recent_expenses})
+
+
+class ExpenseListView(ListView):
+    queryset = Expense.objects.order_by("-date")
+    context_object_name = 'expenses'
+
+
+class ExpenseDetailView(DetailView):
+    queryset = Expense.objects.all()

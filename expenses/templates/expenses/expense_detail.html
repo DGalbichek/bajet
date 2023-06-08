@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h2>{{expense}}</h2>
+    {% if expense.items.all %}
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">item</th>
+                <th scope="col">price</th>
+                <th scope="col">quantity</th>
+                <th scope="col">total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for expense_item in expense.items.all %}
+            <tr>
+                <th scope="row">{{ expense_item.item }}</th>
+                <td>{{ expense_item.price }}</td>
+                <td>{{ expense_item.quantity }}</td>
+                <td>{{ expense_item.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+{% endblock %}

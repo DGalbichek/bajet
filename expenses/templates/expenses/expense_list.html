@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+    <h2>Expenses</h2>
+    <ul>
+        {% for expense in expenses %}
+        <li><a href="{{ expense.get_absolute_url }}">{{ expense }}</a></li>
+        {% endfor %}
+    </ul>
+{% endblock %}
